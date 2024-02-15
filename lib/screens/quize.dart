@@ -74,7 +74,7 @@ class _QuizPageState extends State<QuizPage> {
     Directory tempDir = await getTemporaryDirectory();
     File tempFile = File('${tempDir.path}/temp_audio.mp3');
     await tempFile.writeAsBytes(audioData.buffer.asUint8List(), flush: true);
-    await audioPlayer.play(tempFile.path as Source);
+    await audioPlayer.play(tempFile.path );
   }
 
   void _checkAnswer(int selectedAnswer) {

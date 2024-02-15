@@ -96,6 +96,7 @@ class LoginScreen1 extends StatelessWidget {
                               );
                               if (loginResult == true) {
                                 _authController.setIsLoading(false);
+                                Get.to(ProfileBody());
                               } else {
                                 _authController.setIsLoading(false);
                                 showSnackbarError('Échec de la connexion !');

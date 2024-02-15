@@ -8,7 +8,7 @@ import '../screens/search_screen.dart';
 class MainController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
-  List<Widget> pages = [HomeScreen(), SearchScreen(), ProfileScreen()];
+  List<Widget> pages = [ SearchScreen(), ProfileScreen()];
 
   void onItemTapped(int index) {
     selectedIndex.value = index;

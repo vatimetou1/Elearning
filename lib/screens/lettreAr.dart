@@ -1,93 +1,121 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class ArabicLettersPage extends StatelessWidget {
-  final player = AudioPlayer();
-  final List<String> arabicLetters = [
-    'ا',
-    'ب',
-    'ت',
-    'ث',
-    'ج',
-    'ح',
-    'خ',
-    'د',
-    'ذ',
-    'ر',
-    'ز',
-    'س',
-    'ش',
-    'ص',
-    'ض',
-    'ط',
-    'ظ',
-    'ع',
-    'غ',
-    'ف',
-    'ق',
-    'ك',
-    'ل',
-    'م',
-    'ن',
-    'ه',
-    'و',
-    'ي',
-  ];
+// void main() {
+//   runApp(MyApp());
+// }
 
+class MyApp9 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Alphabet Sounds',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: AlphabetListScreen(),
+    );
+  }
+}
+
+class AlphabetListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lettres en Arabe'),
+        title: Text('Alphabet Sounds'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _buildCategory(
-                'Lettres en Arabe', arabicLetters, 'audio/lettAr.mp3'),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // 2 tuiles par ligne
+          crossAxisSpacing: 8, // Espacement horizontal entre les tuiles
+          mainAxisSpacing: 8, // Espacement vertical entre les tuiles
+        ),
+        itemCount: 28, // Nombre total d'alphabets arabes
+        itemBuilder: (context, index) {
+          String arabicLetter = String.fromCharCode(1575 + index); // Unicode des lettres arabes
+          return AlphabetTile(alphabet: arabicLetter);
+        },
+      ),
+    );
+  }
+}
+
+class AlphabetTile extends StatelessWidget {
+  final String alphabet;
+
+  const AlphabetTile({required this.alphabet});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _playSound(
+          context, alphabet), // Passer l'alphabet à la méthode _playSound
+      child: Container(
+        margin: EdgeInsets.all(8),
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: _getTileColor(
+              alphabet), // Couleur de la carte en fonction de l'alphabet
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
           ],
         ),
+        child: Center(
+          child: Text(
+            alphabet,
+            style: const TextStyle(
+              fontSize: 64, // Taille de la police agrandie
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.italic, // Police italique
+              color: Colors.white, // Couleur du texte noire
+              letterSpacing: 4.0,
+            ),
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildCategory(String title, List<String> items, String audioPath) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 10),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: items.map((item) {
-            return _buildItem(item, audioPath);
-          }).toList(),
-        ),
-      ],
-    );
-  }
+ void _playSound(BuildContext context, String alphabet) {
+  AudioCache player = AudioCache();
+  String soundPath = 'Fr/kid-$alphabet.mp3'; // Chemin correct vers votre fichier audio
+  player.play(soundPath);
+}
 
-  Widget _buildItem(String title, String audioPath) {
-    return ElevatedButton(
-      onPressed: () {
-        playSound();
-      },
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
 
-  Future<void> playSound() async {
-    String soundPath =
-        'audio/lettAr.mp3'; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
-    await player.play(AssetSource(soundPath));
+ 
+  Color _getTileColor(String alphabet) {
+    // Liste de couleurs pour les cartes
+    List<Color> colors = [
+      Colors.blue,
+      Colors.green,
+      Colors.red,
+      Colors.orange,
+      Colors.purple,
+      Colors.yellow,
+      Colors.teal,
+      Colors.pink,
+      Colors.indigo,
+      Colors.cyan,
+      Colors.amber,
+      Colors.brown,
+      Colors.lime,
+      Colors.deepOrange,
+      Colors.lightBlue,
+      Colors.deepPurple,
+      Colors.lightGreen,
+      Colors.grey,
+      Colors.blueGrey,
+      Colors.black,
+    ];
+    return colors[alphabet.codeUnitAt(0) %
+        colors.length]; // Associer chaque alphabet à une couleur de la liste
   }
 }

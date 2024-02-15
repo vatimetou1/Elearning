@@ -4,10 +4,6 @@ import 'package:flutter_application_formatiom/screens/ChiffFr.dart';
 import 'package:flutter_application_formatiom/screens/LettreFr.dart';
 import 'package:flutter_application_formatiom/screens/lettreAr.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,8 +39,7 @@ class CategoriesPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            FrenchLettresPage(), // Corrected class name
+                        builder: (context) => MyApp7(), // Corrected class name
                       ),
                     );
                   },
@@ -58,8 +53,7 @@ class CategoriesPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => FrenchNumbersPage()),
+                      MaterialPageRoute(builder: (context) => MyApp5()),
                     );
                   },
                 ),
@@ -76,8 +70,7 @@ class CategoriesPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ArabicLettersPage()),
+                      MaterialPageRoute(builder: (context) => MyApp9()),
                     );
                   },
                 ),
@@ -89,8 +82,7 @@ class CategoriesPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ArabicNumbersPage()),
+                      MaterialPageRoute(builder: (context) => ChiffAr()),
                     );
                   },
                 ),

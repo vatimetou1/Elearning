@@ -8,6 +8,7 @@ import 'package:flutter_application_formatiom/screens/level.dart';
 import 'package:flutter_application_formatiom/screens/main_screen.dart';
 import 'package:flutter_application_formatiom/screens/profileEns.dart';
 import 'package:flutter_application_formatiom/screens/quize.dart';
+import 'package:flutter_application_formatiom/screens/ChiffAr.dart';
 import 'package:get/get.dart';
 
 import 'firebase_options.dart';
@@ -25,6 +26,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(debugShowCheckedModeBanner: false, home: MyApp1());
+    return GetMaterialApp(debugShowCheckedModeBanner: false, home: MyAppp());
   }
 }

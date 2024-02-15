@@ -5,7 +5,7 @@ import 'package:flutter_application_formatiom/screens/catagorylist.dart';
 import 'package:flutter_application_formatiom/screens/login_screen.dart';
 import 'package:flutter_application_formatiom/screens/loginens.dart';
 
-class MyApp1 extends StatelessWidget {
+class MyAppp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
